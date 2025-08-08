@@ -1,0 +1,19 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    - mkdir -p /src/ComfyUI/models/unet /src/ComfyUI/models/loras /src/ComfyUI/models/diffusion_models
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download Comfy-Org/flux1-kontext-dev_ComfyUI split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors --local-dir /tmp/flux_download
+    - mv /tmp/flux_download/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors /src/ComfyUI/models/diffusion_models/
+    - rm -rf /tmp/flux_download
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download ilkerzgi/Overlay-Kontext-Dev-LoRA WVVtJFD90b8SsU6EzeGkO_adapter_model_comfy_converted.safetensors --local-dir /src/ComfyUI/models/loras --local-dir-use-symlinks False
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

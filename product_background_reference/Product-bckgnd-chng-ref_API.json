@@ -1,0 +1,626 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 0,
+      "steps": 25,
+      "cfg": 2.5,
+      "sampler_name": "dpmpp_3m_sde_gpu",
+      "scheduler": "exponential",
+      "denoise": 1,
+      "model": [
+        "18",
+        0
+      ],
+      "positive": [
+        "19",
+        0
+      ],
+      "negative": [
+        "19",
+        1
+      ],
+      "latent_image": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "epicrealism_naturalSinRC1VAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "commercial photo, perfect lighting， product photo, photorealistic ， super sharp ，super noise reduction",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "(noise, blur, worst quality, low quality, error, cropped, bad anatomy, bad proportions, wrong hands)\n(NSFW, nude)",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "16": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "destination": [
+        "143",
+        0
+      ],
+      "source": [
+        "143",
+        0
+      ],
+      "mask": [
+        "143",
+        1
+      ]
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": {
+      "title": "ImageCompositeMasked"
+    }
+  },
+  "17": {
+    "inputs": {
+      "image": [
+        "143",
+        0
+      ],
+      "alpha": [
+        "143",
+        1
+      ]
+    },
+    "class_type": "ICLightApplyMaskGrey",
+    "_meta": {
+      "title": "IC Light Apply Mask Grey"
+    }
+  },
+  "18": {
+    "inputs": {
+      "model_path": "iclight_sd15_fc.safetensors",
+      "model": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "LoadAndApplyICLightUnet",
+    "_meta": {
+      "title": "Load And Apply IC-Light"
+    }
+  },
+  "19": {
+    "inputs": {
+      "multiplier": 0.182,
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ],
+      "foreground": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "ICLightConditioning",
+    "_meta": {
+      "title": "IC-Light Conditioning"
+    }
+  },
+  "28": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "IPAdapter Unified Loader"
+    }
+  },
+  "29": {
+    "inputs": {
+      "weight": 0.9500000000000001,
+      "weight_type": "style and composition",
+      "combine_embeds": "concat",
+      "start_at": 0,
+      "end_at": 1,
+      "embeds_scaling": "V only",
+      "model": [
+        "28",
+        0
+      ],
+      "ipadapter": [
+        "28",
+        1
+      ],
+      "image": [
+        "145",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": {
+      "title": "IPAdapter Advanced"
+    }
+  },
+  "33": {
+    "inputs": {
+      "image": "hd-makeup-stila.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "57": {
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "109": {
+    "inputs": {
+      "image": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "SplitImageWithAlpha",
+    "_meta": {
+      "title": "Split Image with Alpha"
+    }
+  },
+  "110": {
+    "inputs": {
+      "image": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "ImageInvert",
+    "_meta": {
+      "title": "Invert Image"
+    }
+  },
+  "111": {
+    "inputs": {
+      "radius": 5,
+      "images": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "ImageGaussianBlur",
+    "_meta": {
+      "title": "Image Gaussian Blur"
+    }
+  },
+  "112": {
+    "inputs": {
+      "mode": "add",
+      "blend_percentage": 0.4,
+      "image_a": [
+        "110",
+        0
+      ],
+      "image_b": [
+        "111",
+        0
+      ]
+    },
+    "class_type": "Image Blending Mode",
+    "_meta": {
+      "title": "Image Blending Mode"
+    }
+  },
+  "113": {
+    "inputs": {
+      "image": [
+        "112",
+        0
+      ]
+    },
+    "class_type": "ImageInvert",
+    "_meta": {
+      "title": "Invert Image"
+    }
+  },
+  "114": {
+    "inputs": {
+      "mode": "add",
+      "blend_percentage": 1,
+      "image_a": [
+        "111",
+        0
+      ],
+      "image_b": [
+        "113",
+        0
+      ]
+    },
+    "class_type": "Image Blending Mode",
+    "_meta": {
+      "title": "Image Blending Mode"
+    }
+  },
+  "117": {
+    "inputs": {
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SplitImageWithAlpha",
+    "_meta": {
+      "title": "Split Image with Alpha"
+    }
+  },
+  "118": {
+    "inputs": {
+      "image": [
+        "117",
+        0
+      ]
+    },
+    "class_type": "ImageInvert",
+    "_meta": {
+      "title": "Invert Image"
+    }
+  },
+  "119": {
+    "inputs": {
+      "radius": 5,
+      "images": [
+        "117",
+        0
+      ]
+    },
+    "class_type": "ImageGaussianBlur",
+    "_meta": {
+      "title": "Image Gaussian Blur"
+    }
+  },
+  "120": {
+    "inputs": {
+      "mode": "add",
+      "blend_percentage": 0.5,
+      "image_a": [
+        "118",
+        0
+      ],
+      "image_b": [
+        "119",
+        0
+      ]
+    },
+    "class_type": "Image Blending Mode",
+    "_meta": {
+      "title": "Image Blending Mode"
+    }
+  },
+  "121": {
+    "inputs": {
+      "image": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "ImageInvert",
+    "_meta": {
+      "title": "Invert Image"
+    }
+  },
+  "122": {
+    "inputs": {
+      "mode": "add",
+      "blend_percentage": 1,
+      "image_a": [
+        "119",
+        0
+      ],
+      "image_b": [
+        "121",
+        0
+      ]
+    },
+    "class_type": "Image Blending Mode",
+    "_meta": {
+      "title": "Image Blending Mode"
+    }
+  },
+  "123": {
+    "inputs": {
+      "blend_percentage": 1,
+      "image_a": [
+        "122",
+        0
+      ],
+      "image_b": [
+        "114",
+        0
+      ],
+      "mask": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "Image Blend by Mask",
+    "_meta": {
+      "title": "Image Blend by Mask"
+    }
+  },
+  "124": {
+    "inputs": {
+      "mode": "add",
+      "blend_percentage": 0.65,
+      "image_a": [
+        "119",
+        0
+      ],
+      "image_b": [
+        "123",
+        0
+      ]
+    },
+    "class_type": "Image Blending Mode",
+    "_meta": {
+      "title": "Image Blending Mode"
+    }
+  },
+  "125": {
+    "inputs": {
+      "black_level": 80,
+      "mid_level": 1,
+      "white_level": 180,
+      "image": [
+        "124",
+        0
+      ]
+    },
+    "class_type": "Image Levels Adjustment",
+    "_meta": {
+      "title": "Image Levels Adjustment"
+    }
+  },
+  "126": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "125",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "128": {
+    "inputs": {
+      "rgthree_comparer": {
+        "images": [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_hasnl_00001_.png&type=temp&subfolder=&rand=0.5882216522264005"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_hasnl_00002_.png&type=temp&subfolder=&rand=0.6224801508125398"
+          }
+        ]
+      },
+      "image_a": [
+        "125",
+        0
+      ],
+      "image_b": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "Image Comparer (rgthree)"
+    }
+  },
+  "129": {
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "135": {
+    "inputs": {
+      "expand": -5,
+      "tapered_corners": true,
+      "mask": [
+        "143",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "136": {
+    "inputs": {
+      "mask": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "143": {
+    "inputs": {
+      "rem_mode": "RMBG-1.4",
+      "image_output": "Preview",
+      "save_prefix": "ComfyUI",
+      "torchscript_jit": false,
+      "add_background": "none",
+      "refine_foreground": false,
+      "images": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "easy imageRemBg",
+    "_meta": {
+      "title": "Image Remove Bg"
+    }
+  },
+  "144": {
+    "inputs": {
+      "pixels": [
+        "17",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEEncodeArgMax",
+    "_meta": {
+      "title": "VAE Encode ArgMax"
+    }
+  },
+  "145": {
+    "inputs": {
+      "image": "pexels-tirachard-kumtanom-112571-347140.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "146": {
+    "inputs": {
+      "pixels": [
+        "16",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEEncodeArgMax",
+    "_meta": {
+      "title": "VAE Encode ArgMax"
+    }
+  },
+  "152": {
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "153": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "interpolation": "lanczos",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  }
+}

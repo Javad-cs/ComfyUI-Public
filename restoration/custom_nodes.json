@@ -1,0 +1,18 @@
+[
+  {
+    "repo": "https://github.com/chflame163/ComfyUI_LayerStyle",
+    "commit": "3bfe8e4"
+  },
+  {
+    "repo": "https://github.com/Fannovel16/comfyui_controlnet_aux",
+    "commit": "59b027e"
+  },
+  {
+    "repo": "https://github.com/yolain/ComfyUI-Easy-Use.git",
+    "commit": "e7320ec"
+  },
+  {
+    "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts",
+    "commit": "aac13aa"
+  }
+]

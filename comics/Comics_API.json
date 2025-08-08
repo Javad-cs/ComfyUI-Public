@@ -1,0 +1,979 @@
+{
+    "6": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "8": {
+        "inputs": {
+            "samples": [
+                "31",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "9": {
+        "inputs": {
+            "filename_prefix": "ComfyUI",
+            "images": [
+                "8",
+                0
+            ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+            "title": "Save Image"
+        }
+    },
+    "27": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "31": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "35",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "27",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "33": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Negative Prompt)"
+        }
+    },
+    "35": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "153",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "37": {
+        "inputs": {
+            "unet_name": "flux1-kontext-dev.safetensors",
+            "weight_dtype": "fp8_e4m3fn_fast"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+            "title": "Load Diffusion Model"
+        }
+    },
+    "38": {
+        "inputs": {
+            "clip_name1": "clip_l.safetensors",
+            "clip_name2": "t5xxl_fp16.safetensors",
+            "type": "flux",
+            "device": "default"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+            "title": "DualCLIPLoader"
+        }
+    },
+    "39": {
+        "inputs": {
+            "vae_name": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+            "title": "Load VAE"
+        }
+    },
+    "41": {
+        "inputs": {
+            "pixels": [
+                "42",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+            "title": "VAE Encode"
+        }
+    },
+    "42": {
+        "inputs": {
+            "image": [
+                "43",
+                0
+            ]
+        },
+        "class_type": "FluxKontextImageScale",
+        "_meta": {
+            "title": "FluxKontextImageScale"
+        }
+    },
+    "43": {
+        "inputs": {
+            "image": "ComfyUI_00313_.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+            "title": "Load Image"
+        }
+    },
+    "44": {
+        "inputs": {
+            "images": [
+                "42",
+                0
+            ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+            "title": "Preview Image"
+        }
+    },
+    "89": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "91": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "154",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "92": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "91",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "95",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "93": {
+        "inputs": {
+            "samples": [
+                "92",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "95": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "105": {
+        "inputs": {
+            "samples": [
+                "108",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "107": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "108": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "163",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "107",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "112": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "114": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "115": {
+        "inputs": {
+            "samples": [
+                "118",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "117": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "118": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "164",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "117",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "131": {
+        "inputs": {
+            "samples": [
+                "136",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "132": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "136": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "168",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "132",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "137": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "138": {
+        "inputs": {
+            "samples": [
+                "143",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "139": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "142": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "143": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "169",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "139",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "146": {
+        "inputs": {
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+            "title": "EmptySD3LatentImage"
+        }
+    },
+    "148": {
+        "inputs": {
+            "samples": [
+                "150",
+                0
+            ],
+            "vae": [
+                "39",
+                0
+            ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+            "title": "VAE Decode"
+        }
+    },
+    "150": {
+        "inputs": {
+            "seed": -1,
+            "steps": 20,
+            "cfg": 1,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1,
+            "model": [
+                "37",
+                0
+            ],
+            "positive": [
+                "170",
+                0
+            ],
+            "negative": [
+                "33",
+                0
+            ],
+            "latent_image": [
+                "146",
+                0
+            ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+            "title": "KSampler"
+        }
+    },
+    "151": {
+        "inputs": {
+            "text": "",
+            "speak_and_recognation": {
+                "__value__": [
+                    false,
+                    true
+                ]
+            },
+            "clip": [
+                "38",
+                0
+            ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+            "title": "CLIP Text Encode (Positive Prompt)"
+        }
+    },
+    "153": {
+        "inputs": {
+            "conditioning": [
+                "6",
+                0
+            ],
+            "latent": [
+                "41",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "154": {
+        "inputs": {
+            "conditioning": [
+                "89",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "155": {
+        "inputs": {
+            "direction": "right",
+            "match_image_size": true,
+            "spacing_width": 0,
+            "spacing_color": "white",
+            "image1": [
+                "93",
+                0
+            ],
+            "image2": [
+                "105",
+                0
+            ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+            "title": "Image Stitch"
+        }
+    },
+    "156": {
+        "inputs": {
+            "direction": "right",
+            "match_image_size": true,
+            "spacing_width": 0,
+            "spacing_color": "white",
+            "image1": [
+                "115",
+                0
+            ],
+            "image2": [
+                "131",
+                0
+            ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+            "title": "Image Stitch"
+        }
+    },
+    "157": {
+        "inputs": {
+            "direction": "right",
+            "match_image_size": true,
+            "spacing_width": 0,
+            "spacing_color": "white",
+            "image1": [
+                "138",
+                0
+            ],
+            "image2": [
+                "148",
+                0
+            ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+            "title": "Image Stitch"
+        }
+    },
+    "158": {
+        "inputs": {
+            "direction": "down",
+            "match_image_size": true,
+            "spacing_width": 0,
+            "spacing_color": "white",
+            "image1": [
+                "155",
+                0
+            ],
+            "image2": [
+                "156",
+                0
+            ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+            "title": "Image Stitch"
+        }
+    },
+    "159": {
+        "inputs": {
+            "direction": "down",
+            "match_image_size": true,
+            "spacing_width": 0,
+            "spacing_color": "white",
+            "image1": [
+                "158",
+                0
+            ],
+            "image2": [
+                "157",
+                0
+            ]
+        },
+        "class_type": "ImageStitch",
+        "_meta": {
+            "title": "Image Stitch"
+        }
+    },
+    "160": {
+        "inputs": {
+            "filename_prefix": "ComfyUI",
+            "images": [
+                "159",
+                0
+            ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+            "title": "Save Image"
+        }
+    },
+    "161": {
+        "inputs": {
+            "conditioning": [
+                "112",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "162": {
+        "inputs": {
+            "conditioning": [
+                "114",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "163": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "161",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "164": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "162",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "165": {
+        "inputs": {
+            "conditioning": [
+                "137",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "166": {
+        "inputs": {
+            "conditioning": [
+                "142",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "167": {
+        "inputs": {
+            "conditioning": [
+                "151",
+                0
+            ],
+            "latent": [
+                "31",
+                0
+            ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+            "title": "ReferenceLatent"
+        }
+    },
+    "168": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "165",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "169": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "166",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "170": {
+        "inputs": {
+            "guidance": 2.5,
+            "conditioning": [
+                "167",
+                0
+            ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+            "title": "FluxGuidance"
+        }
+    },
+    "171": {
+        "inputs": {
+            "filename_prefix": "ComfyUI",
+            "fps": 6,
+            "lossless": false,
+            "quality": 90,
+            "method": "default",
+            "images": [
+                "159",
+                0
+            ]
+        },
+        "class_type": "SaveAnimatedWEBP",
+        "_meta": {
+            "title": "SaveAnimatedWEBP"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+[{
+  "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts",
+  "commit": "aac13aa"
+},
+{
+  "repo": "https://github.com/kijai/ComfyUI-Florence2",
+  "commit": "de485b6"
+},
+{
+  "repo": "https://github.com/gseth/ControlAltAI-Nodes",
+  "commit": "721492b"
+},
+{
+  "repo": "https://github.com/cubiq/ComfyUI_essentials",
+  "commit": "9d9f4be"
+},
+{
+  "repo": "https://github.com/TTPlanetPig/Comfyui_TTP_Toolset",
+  "commit": "08fb8b9"
+},
+{
+  "repo": "https://github.com/ssitu/ComfyUI_UltimateSDUpscale",
+  "commit": "3d2b9d0"
+},
+{
+  "repo": "https://github.com/TinyTerra/ComfyUI_tinyterraNodes",
+  "commit": "c669e6c"
+},
+{
+  "repo": "https://github.com/shiimizu/ComfyUI-TiledDiffusion",
+  "commit": "a155b1b"
+}
+]

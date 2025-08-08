@@ -1,0 +1,31 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - pip install alembic sqlalchemy
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    
+    - mkdir -p /src/ComfyUI/models/text_encoders
+    - mkdir -p /src/ComfyUI/models/vae  
+    - mkdir -p /src/ComfyUI/models/diffusion_models
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download Comfy-Org/Qwen-Image_ComfyUI split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors --local-dir /tmp/qwen_text --local-dir-use-symlinks False
+    - mv /tmp/qwen_text/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors /src/ComfyUI/models/text_encoders/
+    - rm -rf /tmp/qwen_text
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download Comfy-Org/Qwen-Image_ComfyUI split_files/vae/qwen_image_vae.safetensors --local-dir /tmp/qwen_vae --local-dir-use-symlinks False
+    - mv /tmp/qwen_vae/split_files/vae/qwen_image_vae.safetensors /src/ComfyUI/models/vae/
+    - rm -rf /tmp/qwen_vae
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download Comfy-Org/Qwen-Image_ComfyUI split_files/diffusion_models/qwen_image_fp8_e4m3fn.safetensors --local-dir /tmp/qwen_diffusion --local-dir-use-symlinks False
+    - mv /tmp/qwen_diffusion/split_files/diffusion_models/qwen_image_fp8_e4m3fn.safetensors /src/ComfyUI/models/diffusion_models/
+    - rm -rf /tmp/qwen_diffusion
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

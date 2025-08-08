@@ -1,0 +1,27 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - pip install alembic sqlalchemy
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    
+    - mkdir -p /src/ComfyUI/models/checkpoints
+    - mkdir -p /src/ComfyUI/models/text_encoders
+    - mkdir -p /src/ComfyUI/models/controlnet
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download LS110824/Flux1 STOIQONewrealityFLUXSD_F1DAlpha.safetensors --local-dir /src/ComfyUI/models/checkpoints --local-dir-use-symlinks False
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download zer0int/CLIP-GmP-ViT-L-14 ViT-L-14-BEST-smooth-GmP-TE-only-HF-format.safetensors --local-dir /src/ComfyUI/models/text_encoders --local-dir-use-symlinks False
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download InstantX/InstantID ControlNetModel/diffusion_pytorch_model.safetensors --local-dir /src/ComfyUI/models/controlnet --local-dir-use-symlinks False
+    - mv /src/ComfyUI/models/controlnet/ControlNetModel/diffusion_pytorch_model.safetensors /src/ComfyUI/models/controlnet/diffusion_pytorch_model.safetensors
+
+predict: "predict.py:Predictor"
+
+

@@ -1,0 +1,27 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - pip install alembic sqlalchemy
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    
+    - mkdir -p /src/ComfyUI/models/loras
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download shariq81/Jixar_flux_v2 Jixar_flux_v2.safetensors --local-dir /tmp/jixar --local-dir-use-symlinks False
+    - mv /tmp/jixar/Jixar_flux_v2.safetensors /src/ComfyUI/models/loras/
+    - rm -rf /tmp/jixar
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download rehanhaider/sd-loras 3DMM_V12.safetensors --local-dir /tmp/3dmm --local-dir-use-symlinks False
+    - mv /tmp/3dmm/3DMM_V12.safetensors /src/ComfyUI/models/loras/
+    - rm -rf /tmp/3dmm
+    
+    - wget -O /src/ComfyUI/models/loras/Detailed_imperfect_skin_faces_and_torso_for_FLUX-000025.safetensors "https://civitai.com/api/download/models/952543?type=Model&format=SafeTensor"
+
+predict: "predict.py:Predictor"
+train: "train.py:train"
