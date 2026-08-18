@@ -1,0 +1,19 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    - mkdir -p /src/ComfyUI/models/checkpoints /src/ComfyUI/models/controlnet
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download SG161222/RealVisXL_V5.0_Lightning RealVisXL_V5.0_Lightning_fp16.safetensors --local-dir /src/ComfyUI/models/checkpoints --local-dir-use-symlinks False
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download hfmaster/models-moved sdxl/controlnet/xinsir-controlnet-union-sdxl-1.0-promax.safetensors --local-dir /tmp/controlnet --local-dir-use-symlinks False
+    - mv /tmp/controlnet/sdxl/controlnet/xinsir-controlnet-union-sdxl-1.0-promax.safetensors /src/ComfyUI/models/controlnet/
+    - rm -rf /tmp/controlnet
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

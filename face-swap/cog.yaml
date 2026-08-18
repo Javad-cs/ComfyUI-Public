@@ -1,0 +1,25 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - pip install alembic sqlalchemy
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    
+    - mkdir -p /src/ComfyUI/models/loras
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download ali-vilab/ACE_Plus portrait/comfyui_portrait_lora64.safetensors --local-dir /tmp/ace_plus --local-dir-use-symlinks False
+    - mv /tmp/ace_plus/portrait/comfyui_portrait_lora64.safetensors /src/ComfyUI/models/loras/
+    - rm -rf /tmp/ace_plus
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download camenduru/FLUX.1-dev FLUX.1-Turbo-Alpha.safetensors --local-dir /tmp/flux_turbo --local-dir-use-symlinks False
+    - mv /tmp/flux_turbo/FLUX.1-Turbo-Alpha.safetensors /src/ComfyUI/models/loras/
+    - rm -rf /tmp/flux_turbo
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

@@ -1,0 +1,17 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    - mkdir -p /src/ComfyUI/models/unet /src/ComfyUI/models/loras
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download city96/FLUX.1-dev-gguf flux1-dev-Q8_0.gguf --local-dir /src/ComfyUI/models/unet --local-dir-use-symlinks False
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download ajinkyaT/text-enhancer-lora Textimprover-FLUX-V0.4.safetensors --local-dir /src/ComfyUI/models/loras --local-dir-use-symlinks False
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

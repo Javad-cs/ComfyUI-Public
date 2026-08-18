@@ -1,0 +1,9 @@
+[{
+        "repo": "https://github.com/city96/ComfyUI-GGUF",
+        "commit": "b3ec875"
+    },
+    {
+        "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts",
+        "commit": "aac13aa"
+    }
+]

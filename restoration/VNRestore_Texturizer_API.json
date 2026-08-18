@@ -1,0 +1,390 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 715804678288392,
+      "steps": 6,
+      "cfg": 1.5,
+      "sampler_name": "dpmpp_2s_ancestral_cfg_pp",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "32",
+        0
+      ],
+      "negative": [
+        "32",
+        1
+      ],
+      "latent_image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": [
+        "60",
+        0
+      ],
+      "clip": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "Negative(hands), text, error, cropped, (worst quality:1.2), (low quality:1.2), normal quality, (jpeg artifacts:1.3), signature, watermark, username, blurry, artist name, monochrome, sketch, censorship, censor, (copyright:1.2), extra legs,(forehead mark),(depth of field),(emotionless),(penis), noises, dusts, scratches, multicolor, patches, extra hands, wrong adam apple, dark skin, painting, earring, scratches, stains, old photo damages, bad quality, blurry, (beard:2), (facial hair:2), bad quality eyes, not realistic eyes\n",
+      "clip": [
+        "14",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "10": {
+    "inputs": {
+      "image": "old_p.jpeg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "12": {
+    "inputs": {
+      "pixels": [
+        "31",
+        0
+      ],
+      "vae": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "14": {
+    "inputs": {
+      "ckpt_name": "RealVisXL_V5.0_Lightning_fp16.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "15": {
+    "inputs": {
+      "strength": [
+        "61",
+        0
+      ],
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "control_net": [
+        "16",
+        0
+      ],
+      "image": [
+        "26",
+        0
+      ],
+      "vae": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
+  },
+  "16": {
+    "inputs": {
+      "type": "auto",
+      "control_net": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SetUnionControlNetType",
+    "_meta": {
+      "title": "SetUnionControlNetType"
+    }
+  },
+  "17": {
+    "inputs": {
+      "control_net_name": "xinsir-controlnet-union-sdxl-1.0-promax.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "19": {
+    "inputs": {
+      "images": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "ORIGINAL IMAGE"
+    }
+  },
+  "22": {
+    "inputs": {
+      "colors": 256,
+      "dither": "floyd-steinberg",
+      "image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "ImageQuantize",
+    "_meta": {
+      "title": "Image Quantize"
+    }
+  },
+  "24": {
+    "inputs": {
+      "strength": 0.2,
+      "start_percent": 0,
+      "end_percent": 0.9990000000000002,
+      "positive": [
+        "15",
+        0
+      ],
+      "negative": [
+        "15",
+        1
+      ],
+      "control_net": [
+        "25",
+        0
+      ],
+      "image": [
+        "22",
+        0
+      ],
+      "vae": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
+  },
+  "25": {
+    "inputs": {
+      "type": "canny/lineart/anime_lineart/mlsd",
+      "control_net": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SetUnionControlNetType",
+    "_meta": {
+      "title": "SetUnionControlNetType"
+    }
+  },
+  "26": {
+    "inputs": {
+      "blur": 2,
+      "image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: GaussianBlurV2",
+    "_meta": {
+      "title": "ADD BLUR TO SOURCE IMAGE"
+    }
+  },
+  "31": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "megapixels": 2,
+      "image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "Scale Image to Total Pixels"
+    }
+  },
+  "32": {
+    "inputs": {
+      "strength": 0.1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "24",
+        1
+      ],
+      "control_net": [
+        "33",
+        0
+      ],
+      "image": [
+        "34",
+        0
+      ],
+      "vae": [
+        "14",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
+  },
+  "33": {
+    "inputs": {
+      "type": "depth",
+      "control_net": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SetUnionControlNetType",
+    "_meta": {
+      "title": "SetUnionControlNetType"
+    }
+  },
+  "34": {
+    "inputs": {
+      "ckpt_name": "depth_anything_v2_vitl.pth",
+      "resolution": [
+        "36",
+        0
+      ],
+      "image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "DepthAnythingV2Preprocessor",
+    "_meta": {
+      "title": "Depth Anything V2 - Relative"
+    }
+  },
+  "35": {
+    "inputs": {
+      "coarse": "disable",
+      "resolution": [
+        "36",
+        0
+      ],
+      "image": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "LineArtPreprocessor",
+    "_meta": {
+      "title": "Realistic Lineart"
+    }
+  },
+  "36": {
+    "inputs": {
+      "image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "easy imageSizeByLongerSide",
+    "_meta": {
+      "title": "ImageSize (LongerSide)"
+    }
+  },
+  "60": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": "a realistic colored photograph of",
+      "text_b": "a Lithuanian smiling boy with normal eyes in Vilnius in the 1990's ",
+      "text_c": ", professtional photography, bright natural ambient light, realistic texture",
+      "result": "a realistic colored photograph of, a Lithuanian smiling boy with normal eyes in Vilnius in the 1990's, professtional photography, bright natural ambient light, realistic texture"
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "PROMPT"
+    }
+  },
+  "61": {
+    "inputs": {
+      "value": 0.6
+    },
+    "class_type": "easy float",
+    "_meta": {
+      "title": "LIKELINESS LEVEL [0.0-1.0]"
+    }
+  },
+  "62": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "8": {
+    "inputs": {
+      "samples": [
+        "30",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "10": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "11": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "27": {
+    "inputs": {
+      "unet_name": "flux1-dev-Q8_0.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "29": {
+    "inputs": {
+      "lora_name": "Textimprover-FLUX-V0.4.safetensors",
+      "strength_model": 0.75,
+      "strength_clip": 1,
+      "prompt": "[none]",
+      "example": "[none]",
+      "model": [
+        "27",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "LoraLoader|pysssss",
+    "_meta": {
+      "title": "Lora Loader 🐍"
+    }
+  },
+  "30": {
+    "inputs": {
+      "seed": 755378908169739,
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "29",
+        0
+      ],
+      "positive": [
+        "56",
+        0
+      ],
+      "negative": [
+        "31",
+        0
+      ],
+      "latent_image": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "31": {
+    "inputs": {
+      "text": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "29",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "40": {
+    "inputs": {
+      "width": 1280,
+      "height": 720,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "55": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "56": {
+    "inputs": {
+      "text": [
+        "60",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "29",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "60": {
+    "inputs": {
+      "string_a": "This modern, scroll-stopping thumbnail shows a diagonal split with glowing lightning running through the center, separating a blurred, muted “before” image from a sharp, ultra-vivid “after” scene that looks almost futuristic. The text is minimal and bold, reading “AI CHANGED EVERYTHING,” styled in a clean sans-serif font with a neon teal-and-purple glow that pops even on dark mode. A small, shocked face with comic-style burst effects sits in the corner, adding a human reaction element. Around the transformation, and dynamic arrows guide the viewer’s eyes toward the dramatic change. The entire palette uses bright cyberpunk tones—electric blues, neon pinks, and chrome highlights—making it look modern, trendy, and impossible to ignore in a feed. ",
+      "string_b": "aidmatextimprover",
+      "delimiter": " ",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "StringConcatenate",
+    "_meta": {
+      "title": "String Concatenate 📅🅕🅝"
+    }
+  }
+}

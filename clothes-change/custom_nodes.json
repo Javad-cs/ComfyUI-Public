@@ -1,0 +1,42 @@
+[
+    {
+      "repo": "https://github.com/ssitu/ComfyUI_UltimateSDUpscale",
+      "commit": "95fb260"
+    },
+    {
+      "repo": "https://github.com/kijai/ComfyUI-SUPIR",
+      "commit": "6fe7a3f"
+    },
+    {
+      "repo": "https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch",
+      "commit": "b432b24"
+    },
+    {
+      "repo": "https://github.com/cubiq/ComfyUI_essentials",
+      "commit": "9d9f4be"
+    },
+    {
+      "repo": "https://github.com/kijai/ComfyUI-KJNodes",
+      "commit": "ad37ce6"
+    },
+    {
+      "repo": "https://github.com/rgthree/rgthree-comfy",
+      "commit": "944d535"
+    },
+    {
+      "repo": "https://github.com/storyicon/comfyui_segment_anything",
+      "commit": "ab63955"
+    },
+    {
+      "repo": "https://github.com/john-mnz/ComfyUI-Inspyrenet-Rembg",
+      "commit": "87ac452"
+    },
+    {
+      "repo": "https://github.com/chrisgoringe/cg-use-everywhere",
+      "commit": "a834f09"
+    },
+    {
+      "repo": "https://github.com/TinyTerra/ComfyUI_tinyterraNodes",
+      "commit": "c669e6c"
+    }
+  ]

@@ -1,0 +1,808 @@
+{
+  "13": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "ViT-L-14-BEST-smooth-GmP-TE-only-HF-format.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "17": {
+    "inputs": {
+      "image": "Image_fx (19).jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "21": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "23": {
+    "inputs": {
+      "guidance": 4,
+      "conditioning": [
+        "142:1",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "29": {
+    "inputs": {
+      "lora_name": "FLUX.1-Turbo-Alpha.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "30": {
+    "inputs": {
+      "images": [
+        "141:2",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "58": {
+    "inputs": {
+      "images": [
+        "151:7",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "77": {
+    "inputs": {
+      "ckpt_name": "STOIQONewrealityFLUXSD_F1DAlpha.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "78": {
+    "inputs": {
+      "method": "Mixture of Diffusers",
+      "tile_width": [
+        "89",
+        0
+      ],
+      "tile_height": [
+        "90",
+        0
+      ],
+      "tile_overlap": 128,
+      "tile_batch_size": [
+        "94",
+        0
+      ],
+      "model": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "TiledDiffusion",
+    "_meta": {
+      "title": "Tiled Diffusion"
+    }
+  },
+  "79": {
+    "inputs": {
+      "image": [
+        "152:1",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "🔧 Get Image Size"
+    }
+  },
+  "89": {
+    "inputs": {
+      "expression": "floor(a/4)",
+      "a": [
+        "79",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Width"
+    }
+  },
+  "90": {
+    "inputs": {
+      "expression": "floor(a/4)",
+      "a": [
+        "79",
+        1
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Height"
+    }
+  },
+  "91": {
+    "inputs": {
+      "width": [
+        "92",
+        0
+      ],
+      "height": [
+        "92",
+        2
+      ],
+      "interpolation": "lanczos",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "152:1",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "92": {
+    "inputs": {
+      "value_1": "a*4",
+      "value_2": "b*4",
+      "a": [
+        "89",
+        0
+      ],
+      "b": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "SimpleMathDual+",
+    "_meta": {
+      "title": "🔧 Simple Math Dual"
+    }
+  },
+  "94": {
+    "inputs": {
+      "expression": "floor((12-2) / ((a*b) / 1000000))",
+      "a": [
+        "89",
+        0
+      ],
+      "b": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Batch Size"
+    }
+  },
+  "104": {
+    "inputs": {
+      "images": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "105": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": [
+        "179",
+        0
+      ],
+      "text_b": "",
+      "text_c": [
+        "195",
+        2
+      ]
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "109": {
+    "inputs": {
+      "upscale_by": 1.0000000000000002,
+      "seed": 1057566304379808,
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "ddim_uniform",
+      "denoise": 0.25000000000000006,
+      "mode_type": "Chess",
+      "tile_width": [
+        "89",
+        0
+      ],
+      "tile_height": [
+        "90",
+        0
+      ],
+      "mask_blur": 8,
+      "tile_padding": 128,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1,
+      "seam_fix_width": 128,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "tiled_decode": false,
+      "image": [
+        "152:1",
+        0
+      ],
+      "model": [
+        "29",
+        0
+      ],
+      "positive": [
+        "190",
+        0
+      ],
+      "negative": [
+        "199",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ],
+      "upscale_model": [
+        "143:0",
+        0
+      ]
+    },
+    "class_type": "UltimateSDUpscale",
+    "_meta": {
+      "title": "Ultimate SD Upscale"
+    }
+  },
+  "113": {
+    "inputs": {
+      "images": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "179": {
+    "inputs": {
+      "text": "The image features a close-up portrait of a young man, likely of East Asian descent, looking directly at the viewer. He has dark, neatly styled hair, which appears thick and is swept back slightly from his forehead. His eyebrows are well-defined and dark, complementing his hair color. His eyes are dark, and he has a serious or neutral expression. The man's skin appears smooth and clear, with some subtle freckles visible on his cheeks. He has a defined jawline and high cheekbones. His lips are a natural pinkish-brown color, and his nose is straight. He is wearing a dark-colored shirt, possibly black, which is visible at the bottom of the frame. The background is a soft, light, out-of-focus color, likely a plain wall."
+    },
+    "class_type": "ttN text",
+    "_meta": {
+      "title": "Add prompt before"
+    }
+  },
+  "188": {
+    "inputs": {
+      "text": [
+        "105",
+        0
+      ],
+      "clip": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "190": {
+    "inputs": {
+      "guidance": 2,
+      "conditioning": [
+        "188",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "193": {
+    "inputs": {
+      "model": "gokaygokay/Florence-2-Flux-Large",
+      "precision": "fp16",
+      "attention": "sdpa",
+      "convert_to_safetensors": false
+    },
+    "class_type": "DownloadAndLoadFlorence2Model",
+    "_meta": {
+      "title": "DownloadAndLoadFlorence2Model"
+    }
+  },
+  "195": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": false,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 773892419851967,
+      "image": [
+        "17",
+        0
+      ],
+      "florence2_model": [
+        "193",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "197": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "199": {
+    "inputs": {
+      "text": "freckles, skin spots, blemishes, mole, acne\n",
+      "clip": [
+        "201",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "201": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "ViT-L-14-BEST-smooth-GmP-TE-only-HF-format.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "186:0": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "151:0": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "151:2": {
+    "inputs": {
+      "noise_seed": 719984350455133
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "143:0": {
+    "inputs": {
+      "model_name": "4x_NMKD-Siax_200k.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "142:0": {
+    "inputs": {
+      "control_net_name": "diffusion_pytorch_model.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "136:0": {
+    "inputs": {
+      "max_width": 1024,
+      "max_height": 1536,
+      "min_width": 0,
+      "min_height": 0,
+      "crop_if_required": "no",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "ConstrainImage|pysssss",
+    "_meta": {
+      "title": "Constrain Image 🐍"
+    }
+  },
+  "151:1": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "136:1": {
+    "inputs": {
+      "image": [
+        "136:0",
+        0
+      ]
+    },
+    "class_type": "GetImageSize+",
+    "_meta": {
+      "title": "🔧 Get Image Size"
+    }
+  },
+  "186:1": {
+    "inputs": {
+      "scale_factor": 1.0000000000000002,
+      "blur_strength": 1,
+      "image": [
+        "136:0",
+        0
+      ]
+    },
+    "class_type": "TTPlanet_Tile_Preprocessor_Simple",
+    "_meta": {
+      "title": "🪐TTP Tile Preprocessor HYDiT  Simple"
+    }
+  },
+  "151:3": {
+    "inputs": {
+      "width": [
+        "136:1",
+        0
+      ],
+      "height": [
+        "136:1",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "186:2": {
+    "inputs": {
+      "union_controlnet_type": "tile",
+      "strength": 0.7000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "conditioning": [
+        "188",
+        0
+      ],
+      "control_net": [
+        "186:0",
+        0
+      ],
+      "image": [
+        "186:1",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "FluxUnionControlNetApply",
+    "_meta": {
+      "title": "Flux Union ControlNet Apply"
+    }
+  },
+  "151:4": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "186:2",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "151:5": {
+    "inputs": {
+      "model": [
+        "77",
+        0
+      ],
+      "conditioning": [
+        "151:4",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "151:6": {
+    "inputs": {
+      "noise": [
+        "151:2",
+        0
+      ],
+      "guider": [
+        "151:5",
+        0
+      ],
+      "sampler": [
+        "151:0",
+        0
+      ],
+      "sigmas": [
+        "151:1",
+        0
+      ],
+      "latent_image": [
+        "151:3",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "151:7": {
+    "inputs": {
+      "samples": [
+        "151:6",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "143:1": {
+    "inputs": {
+      "upscale_model": [
+        "143:0",
+        0
+      ],
+      "image": [
+        "151:7",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "143:2": {
+    "inputs": {
+      "max_width": 1536,
+      "max_height": 1536,
+      "min_width": 0,
+      "min_height": 0,
+      "crop_if_required": "no",
+      "images": [
+        "143:1",
+        0
+      ]
+    },
+    "class_type": "ConstrainImage|pysssss",
+    "_meta": {
+      "title": "Constrain Image 🐍"
+    }
+  },
+  "142:1": {
+    "inputs": {
+      "strength": 0.8000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "188",
+        0
+      ],
+      "negative": [
+        "199",
+        0
+      ],
+      "control_net": [
+        "142:0",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ],
+      "image": [
+        "143:2",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplySD3",
+    "_meta": {
+      "title": "Apply Controlnet with VAE"
+    }
+  },
+  "141:0": {
+    "inputs": {
+      "pixels": [
+        "143:2",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "141:1": {
+    "inputs": {
+      "seed": 769771773240241,
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "29",
+        0
+      ],
+      "positive": [
+        "23",
+        0
+      ],
+      "negative": [
+        "142:1",
+        1
+      ],
+      "latent_image": [
+        "141:0",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "141:2": {
+    "inputs": {
+      "samples": [
+        "141:1",
+        0
+      ],
+      "vae": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "152:0": {
+    "inputs": {
+      "upscale_model": [
+        "143:0",
+        0
+      ],
+      "image": [
+        "141:2",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "152:1": {
+    "inputs": {
+      "max_width": 8192,
+      "max_height": 8192,
+      "min_width": 0,
+      "min_height": 0,
+      "crop_if_required": "no",
+      "images": [
+        "152:0",
+        0
+      ]
+    },
+    "class_type": "ConstrainImage|pysssss",
+    "_meta": {
+      "title": "Constrain Image 🐍"
+    }
+  }
+}

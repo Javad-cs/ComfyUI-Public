@@ -1,0 +1,41 @@
+[{
+        "repo": "https://github.com/chrisgoringe/cg-use-everywhere",
+        "commit": "a834f09"
+    },
+    {
+        "repo": "https://github.com/kaibioinfo/ComfyUI_AdvancedRefluxControl",
+        "commit": "2b95c2c"
+    },
+    {
+        "repo": "https://github.com/kijai/ComfyUI-KJNodes",
+        "commit": "a6b867b"
+    },
+    {
+        "repo": "https://github.com/cubiq/ComfyUI_essentials",
+        "commit": "9d9f4be"
+    },
+    {
+        "repo": "https://github.com/WASasquatch/was-node-suite-comfyui",
+        "commit": "ea935d1"
+    },
+    {
+        "repo": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts",
+        "commit": "aac13aa"
+    },
+    {
+        "repo": "https://github.com/rgthree/rgthree-comfy",
+        "commit": "944d535"
+    },
+    {
+        "repo": "https://github.com/CY-CHENYUE/ComfyUI-Janus-Pro",
+        "commit": "4400129"
+    },
+    {
+        "repo": "https://github.com/TinyTerra/ComfyUI_tinyterraNodes",
+        "commit": "c669e6c"
+    },
+    {
+        "repo": "https://github.com/storyicon/comfyui_segment_anything",
+        "commit": "ab63955"
+    }
+]

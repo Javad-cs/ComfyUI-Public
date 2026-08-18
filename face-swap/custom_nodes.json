@@ -1,0 +1,25 @@
+[{
+        "repo": "https://github.com/ltdrdata/ComfyUI-Impact-Pack",
+        "commit": "48a8143"
+    },
+    {
+        "repo": "https://github.com/cubiq/ComfyUI_essentials",
+        "commit": "9d9f4be"
+    },
+    {
+        "repo": "https://github.com/kijai/ComfyUI-KJNodes",
+        "commit": "a6b867b"
+    },
+    {
+        "repo": "https://github.com/rgthree/rgthree-comfy",
+        "commit": "f754c47"
+    },
+    {
+        "repo": "https://github.com/welltop-cn/ComfyUI-TeaCache",
+        "commit": "91dff8e"
+    },
+    {
+        "repo": "https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch",
+        "commit": "b432b24"
+    }
+]

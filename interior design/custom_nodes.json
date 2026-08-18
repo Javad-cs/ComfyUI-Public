@@ -1,0 +1,13 @@
+[{
+        "repo": "https://github.com/Fannovel16/comfyui_controlnet_aux",
+        "commit": "59b027e"
+    },
+    {
+        "repo": "https://github.com/cubiq/ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a"
+    },
+    {
+        "repo": "https://github.com/kijai/ComfyUI-KJNodes",
+        "commit": "a6b867b"
+    }
+]

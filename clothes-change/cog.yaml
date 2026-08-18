@@ -1,0 +1,33 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - ffmpeg
+  python_version: "3.12"
+  python_requirements: requirements.txt
+  run:
+    - pip install alembic sqlalchemy
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+    - pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+    - pip install hf_transfer huggingface_hub
+    
+    - mkdir -p /src/ComfyUI/models/checkpoints
+    - mkdir -p /src/ComfyUI/models/loras  
+    - mkdir -p /src/ComfyUI/models/upscale_models
+    - mkdir -p /src/ComfyUI/models/text_encoders
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download zer0int/CLIP-GmP-ViT-L-14 ViT-L-14-BEST-smooth-GmP-TE-only-HF-format.safetensors --local-dir /src/ComfyUI/models/text_encoders --local-dir-use-symlinks False
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download uwg/upscaler ESRGAN/8x_NMKD-Superscale_150000_G.pth --local-dir /tmp/upscaler --local-dir-use-symlinks False
+    - mv /tmp/upscaler/ESRGAN/8x_NMKD-Superscale_150000_G.pth /src/ComfyUI/models/upscale_models/
+    - rm -rf /tmp/upscaler
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download TTPlanet/Migration_Lora_flux Migration_Lora_cloth.safetensors --local-dir /src/ComfyUI/models/loras --local-dir-use-symlinks False
+    
+    - HF_HUB_ENABLE_HF_TRANSFER=1 huggingface-cli download ali-vilab/ACE_Plus subject/comfyui_subject_lora16.safetensors --local-dir /tmp/ace_plus --local-dir-use-symlinks False
+    - mv /tmp/ace_plus/subject/comfyui_subject_lora16.safetensors /src/ComfyUI/models/loras/
+    - rm -rf /tmp/ace_plus
+
+
+predict: "predict.py:Predictor"
+train: "train.py:train"

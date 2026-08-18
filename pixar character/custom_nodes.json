@@ -1,0 +1,17 @@
+[{
+        "repo": "https://github.com/lldacing/ComfyUI_PuLID_Flux_ll",
+        "commit": "ba90657"
+    },
+    {
+        "repo": "https://github.com/Gourieff/ComfyUI-ReActor",
+        "commit": "d60458f"
+    },
+    {
+        "repo": "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes",
+        "commit": "d78b780"
+    },
+    {
+        "repo": "https://github.com/yolain/ComfyUI-Easy-Use",
+        "commit": "93254a4"
+    }
+]
